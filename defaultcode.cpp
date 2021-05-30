@@ -26,7 +26,7 @@ using Pset = tree<T, null_type, C, rb_tree_tag, tree_order_statistics_node_updat
 #define F first
 #define S second
 
-#define loop(x, b, e, s) for(int x=b; (s)>0?x<(e):x>(e); x+=(s))
+#define loop(x, b, e, s) for(int x=(b); (s)>0?x<(e):x>(e); x+=(s))
 #define loop1(e) loop(i, 0, e, 1)
 #define loop2(x, e) loop(x, 0, e, 1)
 #define loop3(x, b, e) loop(x, b, e, 1)
