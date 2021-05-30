@@ -159,7 +159,7 @@ void setIO(string f = "") {
 #define IO_opt cin.tie(nullptr), ios_base::sync_with_stdio(false);
 #endif
 template<class F>
-void multi_tc(F option) {
+void multi_tc(F& option) {
 	int t;
 	cin >> t;
 	while(t--)
