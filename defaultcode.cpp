@@ -143,6 +143,8 @@ template<class T, class ... P> void DEF(T v, P ...t) {
 }
 #define de(...) cerr<<"[LINE: "<<__LINE__<<"]["<<#__VA_ARGS__<<"]\n", DEF(__VA_ARGS__);
 
+//#define AC_freopen
+#ifdef AC_freopen
 void setIO(string f = "") {
 	if(f.size()) {
 		freopen((f+".in").c_str(), "r", stdin);
@@ -152,6 +154,10 @@ void setIO(string f = "") {
 		ios_base::sync_with_stdio(false);
 	}
 }
+#endif
+#ifdef AC_freopen
+#define IO_opt cin.tie(nullptr), ios_base::sync_with_stdio(false);
+#endif
 template<class F>
 void multi_tc(F option) {
 	int t;
