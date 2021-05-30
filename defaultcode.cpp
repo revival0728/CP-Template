@@ -134,7 +134,14 @@ template<class T, class ... P> void print(T x, P ... t) {
 	cout << x << ' ';
 	print(t...);
 }
-#define de(...) cerr<<"[LINE: "<<__LINE__<<"]["<<#__VA_ARGS__<<"]\n"<<__VA_ARGS__<<'\n';
+template<class T> void DEF(T v) {
+	cerr << v << "\n-----\n";
+}
+template<class T, class ... P> void DEF(T v, P ...t) {
+	cerr << v << ", ";
+	DEF(t...);
+}
+#define de(...) cerr<<"[LINE: "<<__LINE__<<"]["<<#__VA_ARGS__<<"]\n", DEF(__VA_ARGS__);
 
 void setIO(string f = "") {
 	if(f.size()) {
