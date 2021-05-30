@@ -141,7 +141,7 @@ template<class T, class ... P> void DEF(T v, P ...t) {
 	cerr << v << ", ";
 	DEF(t...);
 }
-#define de(...) cerr<<"[LINE: "<<__LINE__<<"]["<<#__VA_ARGS__<<"]\n", DEF(__VA_ARGS__);
+#define de(...) cerr<<"[LINE: "<<__LINE__<<"]["<<#__VA_ARGS__<<"]\n", DEF(__VA_ARGS__)
 
 //#define AC_freopen
 #ifdef AC_freopen
