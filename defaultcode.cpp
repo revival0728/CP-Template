@@ -155,7 +155,7 @@ void setIO(string f = "") {
 	}
 }
 #endif
-#ifdef AC_freopen
+#ifndef AC_freopen
 #define IO_opt cin.tie(nullptr), ios_base::sync_with_stdio(false);
 #endif
 template<class F>
