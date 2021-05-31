@@ -40,6 +40,6 @@ template<class T, T M> class modular {
 	friend ostream& operator<<(ostream& os, modular m) {os<<m.value; return os;}
 };
 
-using Mod = modular<ll, (ll)1e9+7>;
+//using Mod = modular<ll, (ll)1e9+7>;
 
 int main() {}
