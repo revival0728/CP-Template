@@ -10,9 +10,9 @@ template<class T, T M> class modular {
 	modular(T val=0) : value(val%M) {}
 	template<class P> modular(P val) : value(val) {value%=M;}
 	
-	T pow(ll a, ll b) {
-		ll ret=1;
-		for(a%=M; b; b>>=1, a=a*a%M) if(ret&1) ret=ret*a%M;
+	T pow(T a, T b) {
+		T ret=1;
+		for(a%=M; b; b>>=1, a=a*a%M) if(b&1) ret=ret*a%M;
 		return ret;
 	}
 	modular operator+(modular m) {return modular(value+m.value);}
@@ -27,7 +27,10 @@ template<class T, T M> class modular {
 	modular operator++(int) {modular r=*this; operator++(); return r;}
 	modular operator--() {*this=operator-(1); return *this;}
 	modular operator--(int) {modular r=*this; operator--(); return r;}
-	operator T() {return value;}
+	template<class P> friend modular operator-(P v, modular m) {return modular(v-m.value);}
+	template<class P> friend modular operator/(P v, modular m) {return modular(v)/m;}
+	T get() {return value;}
+	//operator T() {return value;}
 
 	bool operator==(modular m) {return value==m.value;}
 	bool operator!=(modular m) {return value!=m.value;}
@@ -40,6 +43,6 @@ template<class T, T M> class modular {
 	friend ostream& operator<<(ostream& os, modular m) {os<<m.value; return os;}
 };
 
-//using Mod = modular<ll, (ll)1e9+7>;
+using Mod = modular<ll, (ll)1e9+7>;
 
 int main() {}
