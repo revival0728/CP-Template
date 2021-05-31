@@ -167,7 +167,7 @@ namespace cp_template {
 	template<class T, class ...P> void setVt(T& c, int s, P ...t) {
 		c.resize(s);
 		for(auto& e : c)
-			setSz(e, t...);
+			setVt(e, t...);
 	}
 	template<class F> void multi_tc(F& option) {
 		int t;
