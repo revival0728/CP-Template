@@ -23,9 +23,9 @@ namespace cp_template {
 
 #define sz(x) (int)x.size()
 #define All(x) x.begin(), x.end()
-#define rsz(x, v) resize((x), (v))
+#define rsz(...) resize(__VA_ARGS__)
 #define pb(x) push_back((x))
-#define eb(x) emplace_back((x))
+#define eb(...) emplace_back(__VA_ARGS__)
 #define F first
 #define S second
 
