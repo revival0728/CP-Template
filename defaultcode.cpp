@@ -161,8 +161,15 @@ namespace cp_template {
 #ifndef AC_freopen
 #define IO_opt cin.tie(nullptr), ios_base::sync_with_stdio(false);
 #endif
-	template<class F>
-	void multi_tc(F& option) {
+	template<class T, class P> void setVt(T& c, int s, P v) { // args(Vt, size1, size2,..., value)
+		c.resize(s, v);
+	}
+template<class T, class ...P> void setVt(T& c, int s, P ...t) {
+	c.resize(s);
+	for(auto& e : c)
+		setSz(e, t...);
+}
+	template<class F> void multi_tc(F& option) {
 		int t;
 		cin >> t;
 		while(t--)
@@ -170,6 +177,7 @@ namespace cp_template {
 	}
 }
 using namespace cp_template;
+
 
 int main() {
 	;
