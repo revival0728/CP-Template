@@ -3,6 +3,8 @@
 using namespace std;
 using namespace __gnu_pbds;
 
+//#define AC_freopen
+
 namespace cp_template {
 	using ll = long long;
 	using ld = long double;
