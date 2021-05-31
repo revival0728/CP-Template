@@ -169,4 +169,6 @@ namespace cp_template {
 }
 using namespace cp_template;
 
-int main() {}
+int main() {
+	;
+}
