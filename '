@@ -7,11 +7,8 @@ template<class T, T M> class modular {
 	T value;
 
 	public:
-	template<class P> modular(P val=P()) : value(val) {
-		if(value>=M)value%=M;
-		while(value<0)value+=M;
-		while(value>=M)value-=M;
-	}
+	modular(T val=0) : value(val) {value%=M; while(value<0)value+=M; if(value>=M)value%=M;}
+	template<class P> modular(P val) : value(val) {value%=M; while(value<0)value+=M; if(value>=M)value%=M;}
 	
 	T pow(T a, T b) {
 		T ret=1;
@@ -48,4 +45,7 @@ template<class T, T M> class modular {
 
 using Mod = modular<ll, (ll)1e9+7>;
 
-int main() {}
+int main() {
+	Mod a = -1;
+	dbg(a);
+}

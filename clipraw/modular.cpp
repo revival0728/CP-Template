@@ -2,8 +2,11 @@ template<class T, T M> class modular {
 	T value;
 
 	public:
-	modular(T val=0) : value(val%M) {}
-	template<class P> modular(P val) : value(val) {value%=M;}
+	template<class P> modular(P val=P()) : value(val) {
+		if(value>=M)value%=M;
+		while(value<0)value+=M;
+		while(value>=M)value-=M;
+	}
 	
 	T pow(T a, T b) {
 		T ret=1;
@@ -11,7 +14,7 @@ template<class T, T M> class modular {
 		return ret;
 	}
 	modular operator+(modular m) {return modular(value+m.value);}
-	modular operator-(modular m) {T v=value-m.value; while(v<0)v+=M; return modular(v);}
+	modular operator-(modular m) {return modular(value-m.value);}
 	modular operator*(modular m) {return modular(value*m.value);}
 	modular operator/(modular m) {return modular(value*pow(m.value, M-2));} // works if M is prime
 	modular operator+=(modular m) {*this=operator+(m);}
