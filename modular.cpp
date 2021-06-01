@@ -7,7 +7,12 @@ template<class T, T M> class modular {
 	T value;
 
 	public:
-	template<class P> modular(P val=P()) : value(val) {
+	modular(T val=T()) {
+		if(value>=M)value%=M;
+		while(value<0)value+=M;
+		while(value>=M)value-=M;
+	}
+	template<class P> modular(P val) : value(val) {
 		if(value>=M)value%=M;
 		while(value<0)value+=M;
 		while(value>=M)value-=M;
