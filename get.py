@@ -1,9 +1,15 @@
 '''
-This Python file will help you download/clip the template
+This Python file will help you download/clip the template.
+Check out the link below to see what template you can use.
+link: https://github.com/revival0728/CP-Template
+All the files in this repository can be download.
+But the files in the 'clipraw' just only for copping.
+
+Notice: this file reuires module 'getopt' and 'clipboard'
 '''
 
 help_text = '''
-'-n' and '--name' means set up which template your want
+'-n' and '--name' is for picking up which template your want
 '-d' and '--download' means download the template   # need argument < file name >
 '-c' and '--clip' means set your clipboard to the template   # clip from /clipraw/
 '''
