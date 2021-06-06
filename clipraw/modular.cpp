@@ -3,14 +3,12 @@ template<class T, T M> class modular {
 
 	public:
 	modular(T val=T()) {
-		if(value>=M)value%=M;
-		while(value<0)value+=M;
-		while(value>=M)value-=M;
+		value = val;
+		value %= M; while(value<0)value+=M; if(value>=M)value%=M;
 	}
-	template<class P> modular(P val) : value(val) {
-		if(value>=M)value%=M;
-		while(value<0)value+=M;
-		while(value>=M)value-=M;
+	template<class P> modular(P val) {
+		value = val;
+		value %= M; while(value<0)value+=M; if(value>=M)value%=M;
 	}
 	
 	T pow(T a, T b) {
