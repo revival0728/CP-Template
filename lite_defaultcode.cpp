@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+namespace lite_template {
 #define IO cin.tie(0), ios_base::sync_with_stdio(0)
 #define sz(x) (int)x.size()
 #define All(x) x.begin(), x.end()
@@ -27,6 +28,7 @@ template<class T, class ...P> void setVt(T& c, int s, P ...t) {
 	c.resize(s);
 	for(auto& e : c)
 		setVt(e, t...);
+}
 }
 
 int main() {
