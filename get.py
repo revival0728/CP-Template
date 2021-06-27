@@ -6,22 +6,25 @@ All the files in this repository can be download.
 But the files in the 'clipraw' just only for copping.
 
 Notice: this file reuires module 'getopt' and 'clipboard'
+        you can use 'py get.py --setup' to setup the envirment
 '''
 
 help_text = '''
 '-n' and '--name' is for picking up which template your want
 '-d' and '--download' means download the template   # need argument < file name >
 '-c' and '--clip' means set your clipboard to the template   # clip from /clipraw/
+'--setup' is the command for setting up the envirment
 '''
 
 import urllib.request
 import getopt
 import sys
+import os
 import clipboard
 
 pre_url = 'https://raw.githubusercontent.com/revival0728/CP-Template/master/'
 short_cmd = 'hcd:n:'
-long_cmd = ['help', 'clip', 'download=', 'name=']
+long_cmd = ['help', 'clip', 'download=', 'name=', 'setup']
 
 def main():
     try:
@@ -43,6 +46,11 @@ def main():
                 name = v
             elif k in ('-h', '--help'):
                 print(help_text)
+                return
+            elif k in ('--setup'):
+                os.system('python -m ensurepip')
+                os.system('python -m pip install --upgrade pip')
+                os.system('pip install clipboard')
                 return
     except getopt.GetoptError:
         print('Wrong Arguments')
