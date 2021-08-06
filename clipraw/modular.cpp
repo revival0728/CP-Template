@@ -20,10 +20,10 @@ template<class T, T M> class modular {
 	modular operator-(modular m) {return modular(value-m.value);}
 	modular operator*(modular m) {return modular(value*m.value);}
 	modular operator/(modular m) {return modular(value*pow(m.value, M-2));} // works if M is prime
-	modular operator+=(modular m) {*this=operator+(m);}
-	modular operator-=(modular m) {*this=operator-(m);}
-	modular operator*=(modular m) {*this=operator*(m);}
-	modular operator/=(modular m) {*this=operator/(m);}
+	modular operator+=(modular m) {*this=operator+(m); return *this;}
+	modular operator-=(modular m) {*this=operator-(m); return *this;}
+	modular operator*=(modular m) {*this=operator*(m); return *this;}
+	modular operator/=(modular m) {*this=operator/(m); return *this;}
 	modular operator++() {*this=operator+(1); return *this;}
 	modular operator++(int) {modular r=*this; operator++(); return r;}
 	modular operator--() {*this=operator-(1); return *this;}
