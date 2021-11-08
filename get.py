@@ -63,12 +63,12 @@ def main():
             file = urllib.request.urlopen(url).read()
             print('Downloading {} to {}'.format(name, fname))
             with open(fname, 'w') as f:
-                f.write(file.decode('utf8'))
+                f.write(file.decode('utf8').replace('\r', ''))
                 f.close()
         else:
             url = pre_url + '/clipraw/' + name + '.cpp'
             file = urllib.request.urlopen(url).read()
-            clipboard.copy(file.decode('utf8'))
+            clipboard.copy(file.decode('utf8').replace('\r', ''))
             print('{} had clipped in clipboard'.format(name))
     except urllib.request.urlopenError:
         print('Template not found')
