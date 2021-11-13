@@ -172,8 +172,8 @@ namespace cp_template {
 	template<class F> void multi_tc(F& option) {
 		int t;
 		cin >> t;
-		while(t--)
-			option();
+		for(int i = 0; i < t; ++i)
+			option(i+1);
 	}
 }
 using namespace cp_template;
