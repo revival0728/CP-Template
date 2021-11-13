@@ -169,7 +169,7 @@ namespace cp_template {
 		for(auto& e : c)
 			setVt(e, t...);
 	}
-	template<class F> void multi_tc(F& option) {
+	template<class F> void multi_tc(F option) {
 		int t;
 		cin >> t;
 		for(int i = 0; i < t; ++i)
