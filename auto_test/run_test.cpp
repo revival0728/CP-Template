@@ -11,9 +11,9 @@ using namespace std;
 const bool USE_STRICTLY_JUDGE = false;
 const string USER_OUTPUT_FILE_NAME = "output_temporary.out";
 const size_t FILE_ID_LENGTH = 2;
-vector<string> TEST_FILE_PREFIX { // file_name = TEST_FILE_PREFIX[i] + "_{integer}" e.g. "test_case_01"
-  "test_case"
-};
+const string TEST_FILE_PREFIX = "test_case"; // file_name = TEST_FILE_PREFIX[i] + "_{integer}" e.g. "test_case_01"
+const size_t MAX_TEST_CASE_COUNT = 25;
+
 
 using FileIO = IO<ifstream, ofstream>; 
 void run_test(ifstream &ifile, ofstream &ofile) { Solver<FileIO>(FileIO(ifile, ofile)); }
@@ -49,15 +49,18 @@ int main() {
   cout << fixed;
 
   // run tests
-  for(int _test_case = 0; _test_case < TEST_FILE_PREFIX.size(); ++_test_case) {
-    string file_name_prefix = TEST_FILE_PREFIX[_test_case];
+  for(int _test_case = 0; _test_case < MAX_TEST_CASE_COUNT; ++_test_case) {
+    string file_name_prefix = TEST_FILE_PREFIX;
     string test_case = file_id(_test_case + 1);
     string ifile_name = file_name_prefix + "_" + test_case + ".in";
     string ofile_name = USER_OUTPUT_FILE_NAME;
 
     ifs.open(ifile_name), ofs.open(ofile_name);
 
-    if(!(ifs.is_open() && ofs.is_open())) throw runtime_error("Error while opening test data file.");
+    if(!(ifs.is_open() && ofs.is_open())) {
+      if(_test_case == 0) throw runtime_error("Error while opening test data file.");
+      else break;
+    }
 
     // caculate execution time
     clock_t start, end;
@@ -78,8 +81,8 @@ int main() {
   }
 
   // print and check result
-  for(int _test_case = 0; _test_case < TEST_FILE_PREFIX.size(); ++_test_case) {
-    string file_name_prefix = TEST_FILE_PREFIX[_test_case];
+  for(int _test_case = 0; _test_case < user_outputs.size(); ++_test_case) {
+    string file_name_prefix = TEST_FILE_PREFIX;
     string test_case = file_id(_test_case + 1);
     string correct_output, user_output;
     double execution_time = execution_times[_test_case];
@@ -100,11 +103,13 @@ int main() {
     accept = (correct_output == user_output);
 
     // print result
-    cout << "Case #" << test_case << ":\n";
+    cout << "Case #" << test_case << ": ";
     if(accept) {
+      cout << "[V]\n";
       cout << "  Result: AC\n";
       cout << "  Time: " << setprecision(2) << execution_time << '\n';
     } else {
+      cout << "[X]\n";
       cout << "  Result: WA\n";
       cout << "  Time: " << setprecision(2) << execution_time << '\n';
       cout << "  User Output: \n";
