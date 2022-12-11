@@ -10,6 +10,7 @@ template<class InputStream, class OutputStream> class IO {
     IO(InputStream &_is, OutputStream &_os) : is(&_is), os(&_os) {}
     template<class T> IO& operator<<(const T var) { *os << var; return *this; }
     template<class T> IO& operator>>(T& var) { *is >> var; return *this; }
+    void print() { *os << '\n'; }
     template<class T> void print(const T var) { *os << var << '\n'; }
     template<class T, class ...P> void print(const T var, P ...t) { *os << var << ' '; print(t...); }
     template<class T> void read(T& var) { *is >> var; }
