@@ -29,7 +29,7 @@ string file_id(int x) {
 
 string read_all(ifstream &is) {
   string s, ret;
-  while(!is.eof()) getline(is, s), ret += s;
+  while(!is.eof()) getline(is, s), ret += s + "\n  ";
   return ret;
 }
 
