@@ -3,6 +3,9 @@
 
 use std::io;
 
+
+// Begin of my_io.rs
+
 fn to_string(item: &str) -> String { String::from(item) }
 fn to_u32(item: &str) -> u32 { item.parse::<u32>().unwrap() }
 fn to_u64(item: &str) -> u64 { item.parse::<u64>().unwrap() }
@@ -39,4 +42,7 @@ macro_rules! read_item  { ($trans: ident) => { read_item($trans) }; }
 macro_rules! read_items { ($trans: ident) => { &read_vec($trans)[..] }; }
 macro_rules! read_vec   { ($trans: ident) => { read_vec($trans)}; }
 
+// End of my_io
+
 fn main() {}
+

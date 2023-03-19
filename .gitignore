@@ -1,5 +1,12 @@
+# Cpp
+
 *.swp
 *~
 *.exe
 main
 test
+
+
+# Rust
+target
+Cargo.lock
