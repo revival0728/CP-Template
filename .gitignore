@@ -10,3 +10,4 @@ test
 # Rust
 target
 Cargo.lock
+*.o
