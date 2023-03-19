@@ -42,7 +42,7 @@ macro_rules! read_item  { ($trans: ident) => { read_item($trans) }; }
 macro_rules! read_items { ($trans: ident) => { &read_vec($trans)[..] }; }
 macro_rules! read_vec   { ($trans: ident) => { read_vec($trans)}; }
 
-// End of my_io
+// End of my_io.rs
 
 fn main() {}
 
