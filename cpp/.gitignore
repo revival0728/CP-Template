@@ -1,0 +1,6 @@
+# outputs
+*.o
+*.exe
+
+# vim
+*~
