@@ -22,7 +22,7 @@ import sys
 import os
 import clipboard
 
-pre_url = 'https://raw.githubusercontent.com/revival0728/CP-Template/master/'
+pre_url = 'https://raw.githubusercontent.com/revival0728/CP-Template/master/cpp'
 short_cmd = 'hcd:n:'
 long_cmd = ['help', 'clip', 'download=', 'name=', 'setup']
 
@@ -70,7 +70,7 @@ def main():
             file = urllib.request.urlopen(url).read()
             clipboard.copy(file.decode('utf8').replace('\r', ''))
             print('{} had clipped in clipboard'.format(name))
-    except urllib.request.urlopenError:
+    except urllib:
         print('Template not found')
         return
 
