@@ -18,11 +18,10 @@ fn main() {
     let mut IO = BufferIO::new(true);
 
     let a: i32 = IO.read_item();
+    let [c, d]: [i32] = IO.read_items(2)[..] else { todo!() };
     let b: Vec<i32> = IO.read_vec();
-    let [c, d]: [i32] = IO.read_vec()[..] else { todo!() };
 
     fprintln!(IO, "a = {}, b = {}, c = {}", a, c, d);
-    // println!("a = {}, c = {}, d = {}", a, c, d);
     IO.println(&b[..]);
     IO.println(&[a, c, d]);
     IO.println(&["OK"]);

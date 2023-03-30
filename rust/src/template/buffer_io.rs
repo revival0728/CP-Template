@@ -94,6 +94,14 @@ impl BufferIO {
         return res;
     }
 
+    pub fn read_items<T>(&mut self, quantity: usize) -> Vec<T> where T: FromStr {
+        let mut res: Vec<T> = Vec::new();
+
+        for _ in 0..quantity { res.push(self.read_item()) }
+
+        return res;
+    }
+
     pub fn read_vec<T>(&mut self) -> Vec<T> where T: FromStr {
         self.ensure_buffer();
 
