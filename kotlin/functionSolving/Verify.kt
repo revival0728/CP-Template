@@ -1,8 +1,5 @@
 package functionSolving
 
-fun accepted() = println("Accepted")
-fun wrongAnswer(myAnswer: String) = println("Wrong Answer, Your Answer: $myAnswer")
-
 fun prettierToString(obj: Any?): String {
     if(obj is String)
         return obj
@@ -32,6 +29,8 @@ fun prettierToString(obj: Any?): String {
 }
 
 fun checker(a: Any?, b: Any?) {
+    fun accepted() = println("Accepted")
+    fun wrongAnswer(myAnswer: String) = println("Wrong Answer, Your Answer: $myAnswer")
     fun compare(a: Any?, b: Any?): Boolean {
         if(a === b)
             return true
@@ -152,7 +151,7 @@ class LeetCodeProblem<AnswerType>(private val runner: (Solution, Array<ProblemPa
                 "Float" -> FloatParam(values[i].toFloat())
                 "Double" -> DoubleParam(values[i].toDouble())
                 "Boolean" -> BooleanParam(values[i].toBoolean())
-                "String" -> StringParam(values[i].slice(1 until values[i].length))
+                "String" -> StringParam(values[i].slice(1 until values[i].length - 1))
                 "IntArray" -> IntArrayParam(parseArray(values[i]).map { it.toInt() }.toIntArray())
                 "IntArray2D" -> IntArray2DParam(parse2DArray(values[i]).map { it.map { subIt -> subIt.toInt() }.toIntArray() }.toTypedArray())
                 "LongArray" -> LongArrayParam(parseArray(values[i]).map { it.toLong() }.toLongArray())
@@ -163,7 +162,7 @@ class LeetCodeProblem<AnswerType>(private val runner: (Solution, Array<ProblemPa
                 "DoubleArray2D" -> DoubleArray2DParam(parse2DArray(values[i]).map { it.map { subIt -> subIt.toDouble() }.toDoubleArray() }.toTypedArray())
                 "BooleanArray" -> BooleanArrayParam(parseArray(values[i]).map { it.toBoolean() }.toBooleanArray())
                 "BooleanArray2D" -> BooleanArray2DParam(parse2DArray(values[i]).map { it.map { subIt -> subIt.toBoolean() }.toBooleanArray() }.toTypedArray())
-                "StringArray" -> StringArrayParam(parseArray(values[i]).toTypedArray())
+                "StringArray" -> StringArrayParam(parseArray(values[i]).map { it.slice(1 until values[i].length - 1) }.toTypedArray())
                 else -> NullParam()
             })
         }

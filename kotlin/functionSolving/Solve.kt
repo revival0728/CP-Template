@@ -3,7 +3,8 @@ package functionSolving
 import kotlin.math.*
 
 class Solution {
-    fun twoSum(nums: IntArray, target: Int): IntArray {
-        return intArrayOf(1, 2, 3)
+    fun minWindow(s: String, t: String): String {
+        println("$s $t")
+        return ""
     }
 }

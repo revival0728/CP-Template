@@ -1,14 +1,12 @@
-import functionSolving.getIntParams
-import functionSolving.getIntArrayParams
-import functionSolving.Solution
-import functionSolving.LeetCodeProblem
+import functionSolving.*
 
 fun main(args: Array<String>) {
     val problem = LeetCodeProblem { solution, problemParams ->
-        val (target) = getIntParams(problemParams)
-        val (nums) = getIntArrayParams(problemParams)
-        solution.twoSum(nums, target)
+        val (s, t) = getStringParams(problemParams)
+        solution.minWindow(s, t)
     }
-    problem.addCase("[0,1]", "IntArray", "[2,7,11,15]", "Int", "9")
+    problem.addCase(""""BANC"""", "String", """"ADOBECODEBANC"""", "String", """"ABC"""")
+    problem.addCase(""""a"""", "String", """"a"""", "String", """"a"""")
+    problem.addCase("", "String", """"a"""", "String", """"aa"""")
     problem.runTests()
 }
