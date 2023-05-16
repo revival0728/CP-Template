@@ -4,7 +4,7 @@ fun prettierToString(obj: Any?): String {
     if(obj is String)
         return obj
     if(obj is Int)
-        return "$obj"
+        return "\"$obj\""
     if(obj is Long)
         return "$obj"
     if(obj is Float)
