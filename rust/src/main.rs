@@ -10,10 +10,21 @@ mod template;
 use std::io;
 use std::collections::HashMap;
 use std::collections::HashSet;
+use crate::template::buffer_io::BufferIO;
 
 macro_rules! to_usize { ($num: ident) => { usize::try_from($num).unwrap() } }
 
+fn main() {
+    let mut IO = BufferIO::new(true);
 
+    let a: i32 = IO.read_item();
+    let [c, d]: [i32] = IO.read_items(2)[..] else { todo!() };
+    let b: Vec<i32> = IO.read_vec();
 
-fn main() {}
+    fprintln!(IO, "a = {}, b = {}, c = {}", a, c, d);
+    IO.println(&b[..]);
+    IO.println(&[a, c, d]);
+    IO.println(&["OK"]);
+    IO.write("OK\n");
+}
 
