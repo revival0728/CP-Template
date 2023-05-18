@@ -1,5 +1,4 @@
 # Cpp
-
 *.swp
 *~
 *.exe
@@ -11,3 +10,6 @@ test
 target
 Cargo.lock
 *.o
+
+# vscode
+.vscode
