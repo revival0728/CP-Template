@@ -62,7 +62,11 @@ template<class T, unsigned int D> class ndarray {
 
   public:
   ndarray(const std::array<uint, D> _nsize, const T DV = T()) { init(_nsize, DV); }
-  ~ndarray() { delete [] data; }
+  ~ndarray() { 
+    delete [] data;
+    delete [] nsize;
+    delete [] strides;
+  }
   ndarray<T, D>(const ndarray<T, D>& other) { copy(other); }
   ndarray<T, D>& operator=(const ndarray<T, D>& other) { copy(other); return *this; }
   void swap(ndarray& other) {
