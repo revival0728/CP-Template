@@ -21,6 +21,7 @@ template<class T, T M> class modular {
 		for(a%=M; b; b>>=1, a=a*a%M) if(b&1) ret=ret*a%M;
 		return ret;
 	}
+  	modular pow(ll p) {return pow(value, p);}
 	modular operator+(modular m) {return modular(value+m.value);}
 	modular operator-(modular m) {return modular(value-m.value);}
 	modular operator*(modular m) {return modular(value*m.value);}
