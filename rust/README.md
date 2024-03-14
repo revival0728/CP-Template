@@ -5,9 +5,12 @@
 ```rust
 fn main() {
   let T = read!(usize);
-  let (N, M) = read!(usize, usize);
-  let V = read_vec!(i32);
+  let (N, M) = read!(usize, usize).unwrap();
+  let V = read_vec!(i32).unwrap();
   let mut ans: Vec<i64> = Vec::new();
+  while let Some(A, B) = read!(i32, i32) {
+    ...
+  }
   ...
   println!("{}", vec_to_string(&ans));
 }

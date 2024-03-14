@@ -1,8 +1,10 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 #![allow(unused_macros)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
 
-use std::{collections::VecDeque, io};
+use std::{collections::VecDeque, io, mem::swap};
 
 type InputBuffType = VecDeque<String>;
 static mut INPUT_BUFFER: String = String::new();
@@ -31,15 +33,32 @@ macro_rules! read {
   ($t:ty) => {
     unsafe { 
       ensure_input_deq(); 
-      INPUT_DEQ
-        .pop_front()
-        .unwrap()
-        .parse::<$t>()
-        .unwrap()
+      if INPUT_DEQ.is_empty() {
+        None
+      } else {
+        Some(
+        INPUT_DEQ
+          .pop_front()
+          .unwrap()
+          .parse::<$t>()
+          .unwrap()
+        )
+      }
     }
   };
   ($t:ty, $($p:ty)*) => {
-    { (read!($t), read!($($p)*)) }
+    'read_macro: {
+      Some((
+        match read!($t) {
+          Some(x) => x,
+          None => break 'read_macro None
+        },
+        match read!($($p)*) {
+          Some(x) => x,
+          None => break 'read_macro None
+        }
+      ))
+    }
   };
 }
 
@@ -47,11 +66,28 @@ macro_rules! read_vec {
   ($t:ty) => {
     unsafe {
       read_input_buffer();
-      INPUT_BUFFER
-        .trim()
-        .split_whitespace()
-        .map(|x| x.parse::<$t>().unwrap())
-        .collect::<Vec<$t>>()
+      if INPUT_BUFFER.is_empty() {
+        None
+      } else {
+        Some(
+        INPUT_BUFFER
+          .trim()
+          .split_whitespace()
+          .map(|x| x.parse::<$t>().unwrap())
+          .collect::<Vec<$t>>()
+        )
+      }
     }
   };
+}
+
+fn solve() {
+}
+
+fn main() {
+  let T = 1;
+  // let T = read!(usize);
+  for _ in 1..T+1 {
+    solve();
+  }
 }
