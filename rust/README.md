@@ -1,6 +1,18 @@
 # Rust CP Template Notice
 ---
 
+## temp.rs
+```rust
+fn main() {
+  let T = read!(usize);
+  let (N, M) = read!(usize, usize);
+  let V = read_vec!(i32);
+  let mut ans: Vec<i64> = Vec::new();
+  ...
+  println!("{}", vec_to_string(&ans));
+}
+```
+
 ## my_io.rs
 
 1. you have to pass `to_{type}` function to each read function
