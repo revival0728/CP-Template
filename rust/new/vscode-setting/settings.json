@@ -1,0 +1,17 @@
+{
+  "cph.general.defaultLanguage": "rust",
+  "cph.general.defaultLanguageTemplateFileLocation": "/home/revival0728/template/template.rs",
+  "cph.general.timeOut": 5000,
+  "rust-analyzer.linkedProjects": [
+    {
+      "sysroot_src": "/home/revival0728/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library",
+      "crates": [
+        {
+          "root_module": "D_Probabilistic_DP.rs",  //Current Editing File Name
+          "edition": "2021",
+          "deps": [],
+        },
+      ]
+    },
+  ],
+}
