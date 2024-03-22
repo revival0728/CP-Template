@@ -4,7 +4,7 @@ pub mod modular;
 mod test_modular {
   use std::str::FromStr;
 
-use super::modular::modular::{make_const_modular, make_modular, Modular};
+  use super::modular::modular::{make_const_modular, make_modular, Modular, mod_range};
   const M: i64 = (1e9 + 7.0) as i64;
   type Mod = Modular<M>;
 
@@ -83,6 +83,9 @@ use super::modular::modular::{make_const_modular, make_modular, Modular};
       assert_eq!(m.to_i32(), i);
     }
     for (m, i) in MOD1.into_range(MOD4).rev().zip((1..4).rev()) {
+      assert_eq!(m.to_i32(), i);
+    }
+    for (m, i) in mod_range(MOD1, MOD4).zip(1..4) {
       assert_eq!(m.to_i32(), i);
     }
   }

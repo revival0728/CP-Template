@@ -10,7 +10,7 @@ pub mod modular {  // Modular struct for prime modulus
     use super::C;
 
     pub fn fpow(a: C, b: C, m: C) -> C {
-      let mut ret = 1_i64;
+      let mut ret: C = 1;
       let mut a = a;
       let mut b = b;
       while b > 0 {
@@ -196,5 +196,8 @@ pub mod modular {  // Modular struct for prime modulus
     pub fn into_range(&self, end: Modular<M>) -> ModularRange<M> {
       ModularRange::new(*self, end)
     }
+  }
+  pub fn mod_range<const M: C>(start: Modular<M>, end: Modular<M>) -> ModularRange<M> {
+    ModularRange::new(start, end)
   }
 }

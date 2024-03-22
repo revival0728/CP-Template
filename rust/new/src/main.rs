@@ -1,5 +1,6 @@
 mod modular;
 mod cpio;
+mod bitset;
 
 use cpio::cpio::*;
 

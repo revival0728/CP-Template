@@ -3,12 +3,12 @@
 - [Modular Class](#modular-class)
 - [Fenwick Tree](#fenwick-tree)
 ---
-## Modular Class
+## [Modular Class](/modular.cpp)
 ```cpp
 using Mod = modular<ll, (ll)1e9+7>;
 ```
 
-## Fenwick Tree
+## [Fenwick Tree](/fenwick_tree.cpp)
 ```cpp
 template<class T, class trait> fenwick_tree;
 
