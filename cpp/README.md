@@ -2,6 +2,7 @@
 ---
 - [Modular Class](#modular-class)
 - [Fenwick Tree](#fenwick-tree)
+- [Vector Deque](#vector-deque)
 ---
 ## [Modular Class](/cpp/modular.cpp)
 ```cpp
@@ -51,7 +52,7 @@ struct tree_trait : public segment_tree_max<int>, single_update<int> {};
 segment_tree<int, tree_trait> tree(N);
 ```
 
-## [Vector Dequeue](/cpp/vec_deq.cpp)
+## [Vector Deque](/cpp/vec_deq.cpp)
 ```cpp
 vec_deque<int> deq;
 
