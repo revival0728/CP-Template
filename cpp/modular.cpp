@@ -13,8 +13,6 @@ using namespace std;
 
 
 namespace cp_template {
-	using ll = long long;
-
 	template<class T, T M> class modular {
 		T value;
 
@@ -63,6 +61,7 @@ namespace cp_template {
 }
 
 using namespace cp_template;
+using ll = long long;
 
 using Mod = modular<ll, (ll)1e9+7>;
 
