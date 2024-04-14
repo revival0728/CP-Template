@@ -53,7 +53,7 @@ segment_tree<int, tree_trait> tree(N);
 
 ## [Vector Dequeue](/cpp/vec_deq.cpp)
 ```cpp
-vec_deq<int> deq;
+vec_deque<int> deq;
 
 deq.push_back(1);  //vec_deq={1}
 deq.push_front(0); //vec_deq={0,1}
@@ -62,4 +62,22 @@ deq[1]             //vec_deq[1]=1
 deq.pop_front();   //vec_deq={1}
 deq.pop_back();    //vec_deq={}
 deq.empty();       //true
+```
+
+### Reference
+```cpp
+vec_deque(int _capacity);
+template<class P> void push_back(P val);
+template<class P> void push_front(P val);
+template<class ...P> void emplace_back(P ...t);
+template<class ...P> void emplace_front(P ...t);
+size_t size() { return pr - pl; }
+void pop_back();
+void pop_front();
+bool empty();
+T& operator[](const size_t i);
+T& front();
+T& back();
+iterator begin();
+iterator end();
 ```
