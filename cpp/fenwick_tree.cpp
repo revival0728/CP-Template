@@ -31,7 +31,7 @@ namespace cp_template {
       for(int i = 1; i < size; ++i)
         bit[i] = arr[i - 1];
       for(int i = 1; i < size; ++i) {
-        int j = lowbit(i);
+        int j = i + lowbit(i);
         if(j < size)
           bit[j] = op.merge(bit[j], bit[i]);
       }
