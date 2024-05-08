@@ -20,6 +20,7 @@ namespace cp_template {
   #define rc (id << 1 | 1)
 
   template<class T, class trait, class Tt = T> class segment_tree {
+    protected:
     int size, rb, check;
     T nan;
     Tt clear_tag;
