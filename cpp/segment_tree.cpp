@@ -38,7 +38,7 @@ namespace cp_template {
     }
     void build(const std::vector<T>& arr, int id, int l, int r) {
       if(l == r) {
-        seg[id] = arr[id - 1];
+        seg[id] = arr[l - 1];
         return;
       }
       build(arr, lc, l, mid), build(arr, rc, mid + 1, r);
