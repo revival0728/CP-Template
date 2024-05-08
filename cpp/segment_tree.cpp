@@ -115,12 +115,12 @@ namespace cp_template {
       // empty(tag)
       // has default methed
       // true if need to update value and push down lazy tag
-      virtual bool empty(Tt t) { return t == 0; }
+      virtual bool empty(Tt t) { return t == Tt(); }
 
       // clear_tag()
       // has default value
       // return cleared tag value
-      virtual Tt clear_tag() { return 0; }
+      virtual Tt clear_tag() { return Tt(); }
     };
   }
 }
