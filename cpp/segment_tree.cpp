@@ -3,7 +3,10 @@
  * The Segment Tree template
  * Author: revival0728
  *
- * Not Tested
+ * Tested with: https://atcoder.jp/contests/abc138/tasks/abc138_d
+ * Status: AC
+ * Time: 303ms
+ * Memory: 38388 KB
  *
  */
 
@@ -25,7 +28,7 @@ namespace cp_template {
     trait op;
 
     void push(int id, int l, int r) {
-      if(!op.empty(tag[id])) return;
+      if(op.empty(tag[id])) return;
       seg[id] = op.upd(seg[id], tag[id], l, r);
       if(l != r) {
         tag[lc] = op.push(tag[lc], tag[id]);
@@ -55,8 +58,8 @@ namespace cp_template {
     T qry(int id, int l, int r, int ql, int qr) {
       push(id, l, r);
       if(r < ql || l > qr) return nan;
-      if(ql <= l && r <= qr) 
-        return op.merge(qry(lc, l, mid, ql, qr), qry(rc, mid + 1, r, ql, qr));
+      if(ql <= l && r <= qr) return seg[id];
+      return op.merge(qry(lc, l, mid, ql, qr), qry(rc, mid + 1, r, ql, qr));
     }
 
     public:
@@ -120,86 +123,4 @@ namespace cp_template {
       virtual Tt clear_tag() { return 0; }
     };
   }
-}
-
-
-// for solving test problem
-namespace cp_template {
-  #include <iostream>
-
-	template<class T, T M> class modular {
-		T value;
-
-		public:
-		modular(T val=T()) {
-			value = val;
-			value %= M; if(value < 0) value += M;
-		}
-		template<class P> modular(P val) {
-			value = val;
-			value %= M; if(value < 0) value += M;
-		}
-		
-		T pow(T a, T b) {
-			T ret=1;
-			for(a%=M; b; b>>=1, a=a*a%M) if(b&1) ret=ret*a%M;
-			return ret;
-		}
-		modular pow(T p) {return pow(value, p);}
-		modular operator+(modular m) {return modular(value+m.value);}
-		modular operator-(modular m) {return modular(value-m.value);}
-		modular operator*(modular m) {return modular(value*m.value);}
-		modular operator/(modular m) {return modular(value*pow(m.value, M-2));} // works if M is prime
-		modular operator+=(modular m) {*this=operator+(m); return *this;}
-		modular operator-=(modular m) {*this=operator-(m); return *this;}
-		modular operator*=(modular m) {*this=operator*(m); return *this;}
-		modular operator/=(modular m) {*this=operator/(m); return *this;}
-		modular operator++() {*this=operator+(1); return *this;}
-		modular operator++(int) {modular r=*this; operator++(); return r;}
-		modular operator--() {*this=operator-(1); return *this;}
-		modular operator--(int) {modular r=*this; operator--(); return r;}
-		template<class P> friend modular operator-(P v, modular m) {return modular(v-m.value);}
-		template<class P> friend modular operator/(P v, modular m) {return modular(v)/m;}
-		T get() {return value;}
-
-		bool operator==(modular m) {return value==m.value;}
-		bool operator!=(modular m) {return value!=m.value;}
-		bool operator<(modular m) {return value<m.value;}
-		bool operator>(modular m) {return value>m.value;}
-		bool operator<=(modular m) {return value<=m.value;}
-		bool operator>=(modular m) {return value>=m.value;}
-
-		friend std::istream& operator>>(std::istream& is, modular& m) {is>>m.value; return is;}
-		friend std::ostream& operator<<(std::ostream& os, modular m) {os<<m.value; return os;}
-	};
-}
-
-using namespace std;
-using namespace cp_template;
-
-using ll = long long;
-using Mod = modular<ll, 998244353>;
-using pmm = pair<Mod, Mod>;
-
-struct tree_trait : public trait::segment_tree_op<Mod, pmm> {
-  Mod m0 = Mod(0);
-  
-  int check() { return 1; }
-  Mod nan() { return 0; }
-  Mod merge(Mod a, Mod b) { 
-    return a + b; 
-  }
-  Mod upd(Mod seg, pmm tag, int l, int r) {
-    return Mod();
-  }
-  pmm push(pmm current, pmm parent) {
-    return pmm();
-  }
-  virtual pmm clear_tag() override { return make_pair(m0, m0); }
-  virtual bool empty(pmm tag) override { return tag.first == m0 && tag.second == m0; }
-};
-
-
-int main() {
-  segment_tree<Mod, tree_trait, pmm> tree(10);
 }
