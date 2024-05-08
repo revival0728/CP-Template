@@ -2,6 +2,7 @@
 ---
 - [Modular Class](#modular-class)
 - [Fenwick Tree](#fenwick-tree)
+- [Segment Tree](#segment-tree)
 - [Vector Deque](#vector-deque)
 ---
 ## [Modular Class](/cpp/modular.cpp)
@@ -30,26 +31,52 @@ fenwick_tree<int, trait::fenwick_tree_add<int>> tree(N);
 ```cpp
 template<class T, class trait, class Tt> segment_tree;
 
-template<class T, class Tt = int> struct segment_tree_op {
+template<class T, class Tt = T> struct segment_tree_op {
+  // check()
+  // return segment tree update method
+  // 0 -> single update
+  // 1 -> range update
+  virtual int check() = 0;
+
   // nan()
   // return out of boundary value
-  virtual constexpr T nan() = 0;
+  virtual T nan() = 0;
 
   // merge(l, r)
   // merge values of [l] and [r]
-  virtual T merge(const T&, const T&) = 0;
+  virtual T merge(T, T) = 0;
+
+  // upd(seg, tag, l, r)
+  // update seg value by tag value and interval [l, r]
+  virtual T upd(T seg, Tt tag, int l, int r) = 0;
+
+  // push(current_tag, parent_tag)
+  // update current tag value by parent tag value
+  virtual Tt push(Tt, Tt) = 0;
+
+  // empty(tag)
+  // has default methed
+  // true if need to update value and push down lazy tag
+  virtual bool empty(Tt t) { return t == 0; }
+
+  // clear_tag()
+  // has default value
+  // return cleared tag value
+  virtual Tt clear_tag() { return 0; }
 };
 ```
 
 Example by template
 ```cpp
-using namespace trait::segment_tree;
+struct tree_trait : trait::segment_tree_op<ll> {
+  int check() { return 1; }
+  ll nan() { return 0; }
+  ll merge(ll l, ll r) { return l + r; }
+  ll upd(ll seg, ll tag, int l, int r) { return seg + tag; }
+  ll push(ll cur, ll par) { return cur + par; }
+};
 
-struct tree_trait : public segment_tree_add<int>, range_update<int>, update_by_set<int>, update_by_single<int> {};
-segment_tree<int, tree_trait> tree(N);
-
-struct tree_trait : public segment_tree_max<int>, single_update<int> {};
-segment_tree<int, tree_trait> tree(N);
+segment_tree<ll, tree_trait> tree(N);
 ```
 
 ## [Vector Deque](/cpp/vec_deque.cpp)
