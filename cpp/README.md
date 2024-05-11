@@ -1,8 +1,9 @@
 # The C++ CP Template
 ---
-- [Modular Class](#modular-class)
-- [Fenwick Tree](#fenwick-tree)
-- [Segment Tree](#segment-tree)
+## Snippet
+- [Modular Class](#modular-class): modular
+- [Fenwick Tree](#fenwick-tree): fenwick
+- [Segment Tree](#segment-tree): segment
 - [Vector Deque](#vector-deque)
 ---
 ## [Modular Class](/cpp/modular.cpp)
