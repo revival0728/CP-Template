@@ -1,4 +1,6 @@
-package ioSolving
+import kotlin.math.abs
+import kotlin.math.min
+import kotlin.math.max
 
 fun readStr() = readln()
 fun readStrings() = readln().split(" ")
@@ -17,6 +19,7 @@ fun outArray(a: Array<Any>) = outLine(a.joinToString(" "))
 fun outArray(a: IntArray) = outLine(a.joinToString(" "))
 fun outArray(a: LongArray) = outLine(a.joinToString(" "))
 fun outArray(a: BooleanArray) = outLine(a.joinToString(" "))
+fun outArray(a: CharArray) = outLine(a.joinToString(" "))
 fun outs(vararg v: Any) = outArray(Array(v.size) { i -> v[i] })
 
 fun solve() {
@@ -30,4 +33,3 @@ fun main(args: Array<String>) {
     }
     print(OUTPUT.toString())
 }
-
