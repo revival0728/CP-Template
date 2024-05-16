@@ -85,6 +85,19 @@ namespace cp_template {
   #undef sq
 
   namespace geometry {
+    #include <vector>
+    #include <cmath>
+    template<class T> T calc_area2(const std::vector<Vector<T>>& pt) {
+      int sz = pt.size();
+      T ret = 0;
+      for(int i = 1; i <= sz; ++i) {
+        ret += pt[i - 1] ^ pt[i % sz];
+      }
+      return std::abs(ret);
+    }
+    template<class T> T calc_area(const std::vector<Vector<T>>& pt) {
+      return calc_area2(pt) / 2;
+    }
 
     #include <vector>
     #include <algorithm>
