@@ -4,6 +4,7 @@
 - [Modular Class](#modular-class): modular
 - [Fenwick Tree](#fenwick-tree): fenwick
 - [Segment Tree](#segment-tree): segment
+- [Geometry](#geometry)
 - [Vector Deque](#vector-deque)
 ---
 ## [Modular Class](/cpp/modular.cpp)
@@ -79,6 +80,7 @@ struct tree_trait : trait::segment_tree_op<ll> {
 
 segment_tree<ll, tree_trait> tree(N);
 ```
+## [Geometry](/cpp/geometry.cpp)
 
 ## [Vector Deque](/cpp/vec_deque.cpp)
 ```cpp
