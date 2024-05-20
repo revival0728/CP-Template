@@ -28,43 +28,44 @@ namespace cp_template {
 
   #include <cmath>
   #define sq(x) ((x) * (x))
-  template<class T> struct Vector {
+  template<class T, class Float_t = double> struct Vector {
+    using Self_t = Vector<T, Float_t>;
     T x, y;
     Vector() : x(0), y(0) {}
     Vector(T _x, T _y) : x(_x), y(_y) {}
-    friend Vector<T> operator+(const Vector<T>& a, const Vector<T>& b) {
-      return Vector<T>(a.x + b.x, a.y + b.y);
+    friend Self_t operator+(const Self_t& a, const Self_t& b) {
+      return Self_t(a.x + b.x, a.y + b.y);
     }
-    friend Vector<T> operator-(const Vector<T>& a, const Vector<T>& b) {
-      return Vector<T>(a.x - b.x, a.y - b.y);
+    friend Self_t operator-(const Self_t& a, const Self_t& b) {
+      return Self_t(a.x - b.x, a.y - b.y);
     }
-    friend Vector<T> operator*(const Vector<T>& a, const T k) {
-      return Vector<T>(a.x * k, a.y * k);
+    friend Self_t operator*(const Self_t& a, const T k) {
+      return Self_t(a.x * k, a.y * k);
     }
-    friend Vector<T> operator/(const Vector<T>& a, const T k) {
-      return Vector<T>(a.x / k, a.y / k);
+    friend Self_t operator/(const Self_t& a, const T k) {
+      return Self_t(a.x / k, a.y / k);
     }
-    friend T operator*(const Vector<T>& a, const Vector<T>& b) {
+    friend T operator*(const Self_t& a, const Self_t& b) {
       return a.x * b.x + a.y * b.y;
     }
-    friend T operator^(const Vector<T>& a, const Vector<T>& b) {
+    friend T operator^(const Self_t& a, const Self_t& b) {
       return a.x * b.y - a.y * b.x;
     }
-    friend bool operator<(const Vector<T>& a, const Vector<T>& b) {
+    friend bool operator<(const Self_t& a, const Self_t& b) {
       using geometry::eps_compare::eq;
       using geometry::eps_compare::le;
       return eq(a.x, b.x) ? le(a.y, b.y) : le(a.x, b.x);
     }
-    friend bool operator>(const Vector<T>& a, const Vector<T>& b) {
+    friend bool operator>(const Self_t& a, const Self_t& b) {
       using geometry::eps_compare::eq;
       using geometry::eps_compare::ge;
       return eq(a.x, b.x) ? ge(a.y, b.y) : ge(a.x, b.x);
     }
-    friend bool operator==(const Vector<T>& a, const Vector<T>& b) {
+    friend bool operator==(const Self_t& a, const Self_t& b) {
       using geometry::eps_compare::eq;
       return eq(a.x, b.x) && eq(a.y, b.y);
     }
-    friend bool operator!=(const Vector<T>& a, const Vector<T>& b) {
+    friend bool operator!=(const Self_t& a, const Self_t& b) {
       using geometry::eps_compare::ne;
       return ne(a.x, b.x) || ne(a.y, b.y);
     }
@@ -74,12 +75,13 @@ namespace cp_template {
       x = _x;
       y = _y;
     }
-    friend std::ostream& operator<<(std::ostream& os, const Vector<T> v) {
+    friend std::ostream& operator<<(std::ostream& os, const Self_t v) {
       return os << "{" << v.x << "," << v.y << "}";
     }
-    T length() { return std::sqrt(sq(x) + sq(y)); }
-    Vector<T> rotate(T angle) {
-      return Vector<T>(x * std::cos(angle) - y * std::sin(angle), x * std::sin(angle) + y * std::cos(angle));
+    T length2() { return sq(x) + sq(y); }
+    Float_t length() { return std::sqrt(sq(x) + sq(y)); }
+    Self_t rotate(Float_t angle) {
+      return Self_t(x * std::cos(angle) - y * std::sin(angle), x * std::sin(angle) + y * std::cos(angle));
     }
   };
   #undef sq
@@ -140,7 +142,14 @@ namespace cp_template {
       return (in_seg(p1, p2, q1) || in_seg(p1, p2, q2) || in_seg(q1, q2, p1) || in_seg(q1, q2, p2)) ||
              (cross(p1, p2, q1, q2) && cross(q1, q2, p1, p2));
     }
+
+    template<class T> struct CmpByAngle {
+      bool operator()(const T& lhs, const T& rhs) {
+        T zero = T();
+        if((lhs < zero) ^ (rhs < zero))
+          return (lhs < zero) < (rhs < zero);
+        return (lhs ^ rhs) > 0;
+      }
+    };
   }
 }
-
-int main() {}
