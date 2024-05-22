@@ -30,6 +30,7 @@ namespace cp_template {
   #define sq(x) ((x) * (x))
   template<class T, class Float_t = double> struct Vector {
     using Self_t = Vector<T, Float_t>;
+    typedef T value_type;
     T x, y;
     Vector() : x(0), y(0) {}
     Vector(T _x, T _y) : x(_x), y(_y) {}
@@ -145,10 +146,11 @@ namespace cp_template {
 
     template<class T> struct CmpByAngle {
       bool operator()(const T& lhs, const T& rhs) {
+        using eps_compare::ge;
         T zero = T();
         if((lhs < zero) ^ (rhs < zero))
           return (lhs < zero) < (rhs < zero);
-        return (lhs ^ rhs) > 0;
+        return ge(lhs ^ rhs, T::value_type());
       }
     };
   }
