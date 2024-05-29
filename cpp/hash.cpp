@@ -30,8 +30,8 @@ namespace cp_template {
     HashIterable() {}
     HashIterable(const IT& i) { build_hash(i); }
     ull operator()(const IT& i) {
-      build_single_hash(i, v1, p1, MOD1);
-      return single_hash(v1, p1, MOD1, 1, i.size());
+      build_hash(i);
+      return single_hash(v1, p1, MOD1, 1, i.size()) * single_hash(v2, p2, MOD2, 1, i.size());
     }
     std::pair<ll, ll> hash(int l, int r) { 
       return {
@@ -39,5 +39,6 @@ namespace cp_template {
         single_hash(v2, p2, MOD2, l, r)
       }; 
     }
+    ull mdhash(int l, int r) { return single_hash(v1, p1, MOD1, l, r) * single_hash(v2, p2, MOD2, l, r); }
   };
 }
