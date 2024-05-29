@@ -33,12 +33,12 @@ namespace cp_template {
       build_hash(i);
       return single_hash(v1, p1, MOD1, 1, i.size()) * single_hash(v2, p2, MOD2, 1, i.size());
     }
-    std::pair<ll, ll> hash(int l, int r) { 
+    std::pair<ll, ll> hashp(int l, int r) { 
       return {
         single_hash(v1, p1, MOD1, l, r),
         single_hash(v2, p2, MOD2, l, r)
       }; 
     }
-    ull mdhash(int l, int r) { return single_hash(v1, p1, MOD1, l, r) * single_hash(v2, p2, MOD2, l, r); }
+    ull hash(int l, int r) { return single_hash(v1, p1, MOD1, l, r) * single_hash(v2, p2, MOD2, l, r); }
   };
 }
