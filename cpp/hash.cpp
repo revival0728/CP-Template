@@ -3,14 +3,18 @@ namespace cp_template {
   class HashIterable {  //1-base && []
     using ll = long long;
     using ull = unsigned long long;
-    private:
+
+    protected:
+    int rb;
     std::vector<ll> v1, v2, p1, p2;
     void build_single_hash(const IT& i, std::vector<ll>& v, std::vector<ll>& p, int MOD) {
-      v.reserve(i.size() + 1);
-      p.reserve(i.size() + 1);
+      int size = i.size() + 1;
+      rb = size - 1;
+      v.reserve(size);
+      p.reserve(size);
       v.push_back(0);
       p.push_back(1);
-      for(auto it = i.rbegin(); it != i.rend(); ++it) {
+      for(auto it = i.begin(); it != i.end(); ++it) {
         ll e = (ll)(*it);
         v.push_back(v.back() * B % MOD + e);
         v.back() %= MOD;
@@ -33,12 +37,16 @@ namespace cp_template {
       build_hash(i);
       return single_hash(v1, p1, MOD1, 1, i.size()) * single_hash(v2, p2, MOD2, 1, i.size());
     }
-    std::pair<ll, ll> hashp(int l, int r) { 
+    std::pair<ll, ll> hashp(int l, int r) {
+      assert(1 <= l && l <= r && r <= rb);
       return {
         single_hash(v1, p1, MOD1, l, r),
         single_hash(v2, p2, MOD2, l, r)
       }; 
     }
-    ull hash(int l, int r) { return single_hash(v1, p1, MOD1, l, r) * single_hash(v2, p2, MOD2, l, r); }
+    ull hash(int l, int r) {
+      assert(1 <= l && l <= r && r <= rb);
+      return single_hash(v1, p1, MOD1, l, r) * single_hash(v2, p2, MOD2, l, r); 
+    }
   };
 }
