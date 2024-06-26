@@ -150,7 +150,7 @@ namespace cp_template {
         T zero = T();
         if((lhs < zero) ^ (rhs < zero))
           return (lhs < zero) < (rhs < zero);
-        return ge(lhs ^ rhs, T::value_type());
+        return ge(lhs ^ rhs, typename T::value_type());
       }
     };
   }
