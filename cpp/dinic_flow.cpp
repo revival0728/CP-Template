@@ -1,6 +1,6 @@
 // copied from https://github.com/GuanH/Rurudo_daisuki_Codebook/blob/main/flow/dinic.cpp
-
 const int MXN=1000;
+#define DINIC_MAX INT_MAX
 struct Dinic
 {
   struct Edge
@@ -69,7 +69,7 @@ struct Dinic
   int flow(int res = 0)
   {
     while (BFS())
-      res += DFS(s, 2147483647);
+      res += DFS(s, DINIC_MAX);
     return res;
   }
 } flow;
